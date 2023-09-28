@@ -43,6 +43,7 @@ x64/
 *.log
 *.svclog
 *.scc
+*.vsidx
 
 # Visual C++ cache files
 ipch/
@@ -131,3 +132,7 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+
+.vs/**
+.vs/
+
