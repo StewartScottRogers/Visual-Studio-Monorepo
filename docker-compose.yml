@@ -1,0 +1,18 @@
+version: '3.4'
+
+networks:
+
+  monorepo-network:
+    name: visual-studio-monorepo
+    external: false
+
+services:
+
+  sampleservice01:
+    image: ${DOCKER_REGISTRY-}monorepo-sampleservice01
+    container_name: monorepo-sampleservice01
+    build:
+      context: ./SampleService01/SampleService01
+      dockerfile: Dockerfile
+    networks:
+      - monorepo-network

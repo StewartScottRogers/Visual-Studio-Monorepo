@@ -1,0 +1,5 @@
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Docker\publish\SampleService01.exe
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Docker\publish\SampleService01.dll
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Docker\publish\SampleService01.deps.json
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Docker\publish\SampleService01.runtimeconfig.json
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Docker\publish\SampleService01.pdb

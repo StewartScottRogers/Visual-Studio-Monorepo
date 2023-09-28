@@ -1,0 +1,14 @@
+name: dockercompose3851892484807098878
+services:
+  sampleservice01:
+    build:
+      context: E:\Repos\Visual-Studio-Monorepo\SampleService01
+      dockerfile: SampleService01/Dockerfile
+    container_name: monorepo-sampleservice01
+    image: sampleservice01
+    networks:
+      monorepo-network: null
+networks:
+  monorepo-network:
+    name: visual-studio-monorepo
+    external: true

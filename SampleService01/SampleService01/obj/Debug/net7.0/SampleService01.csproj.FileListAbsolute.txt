@@ -1,0 +1,14 @@
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\bin\Debug\net7.0\SampleService01.exe
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\bin\Debug\net7.0\SampleService01.deps.json
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\bin\Debug\net7.0\SampleService01.runtimeconfig.json
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\bin\Debug\net7.0\SampleService01.dll
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\bin\Debug\net7.0\SampleService01.pdb
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\SampleService01.GeneratedMSBuildEditorConfig.editorconfig
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\SampleService01.AssemblyInfoInputs.cache
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\SampleService01.AssemblyInfo.cs
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\SampleService01.csproj.CoreCompileInputs.cache
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\SampleService01.dll
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\refint\SampleService01.dll
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\SampleService01.pdb
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\SampleService01.genruntimeconfig.cache
+E:\Repos\Visual-Studio-Monorepo\SampleService01\SampleService01\obj\Debug\net7.0\ref\SampleService01.dll

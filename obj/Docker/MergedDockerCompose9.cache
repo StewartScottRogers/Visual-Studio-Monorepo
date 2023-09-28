@@ -1,0 +1,13 @@
+name: dockercompose3851892484807098878
+services:
+  sampleservice01:
+    build:
+      context: E:\Repos\Visual-Studio-Monorepo\SampleService01
+      dockerfile: SampleService01/Dockerfile
+    container_name: sampleservice01
+    image: sampleservice01
+    networks:
+      default: null
+networks:
+  default:
+    name: dockercompose3851892484807098878_default
