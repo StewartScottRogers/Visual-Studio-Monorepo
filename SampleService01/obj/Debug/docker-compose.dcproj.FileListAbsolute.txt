@@ -1,8 +1,0 @@
-E:\Repos\Visual-Studio-Monorepo\SampleService01\bin\Debug\SampleService01.deps.json
-E:\Repos\Visual-Studio-Monorepo\SampleService01\bin\Debug\SampleService01.runtimeconfig.json
-E:\Repos\Visual-Studio-Monorepo\SampleService01\bin\Debug\SampleService01.exe
-E:\Repos\Visual-Studio-Monorepo\SampleService01\bin\Debug\SampleService01.dll
-E:\Repos\Visual-Studio-Monorepo\SampleService01\bin\Debug\SampleService01.pdb
-E:\Repos\Visual-Studio-Monorepo\SampleService01\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
-E:\Repos\Visual-Studio-Monorepo\SampleService01\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
-E:\Repos\Visual-Studio-Monorepo\SampleService01\obj\Debug\docker-compose.dcproj.CopyComplete
