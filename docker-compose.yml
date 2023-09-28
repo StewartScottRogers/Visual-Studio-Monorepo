@@ -6,7 +6,26 @@ networks:
     name: visual-studio-monorepo
     external: false
 
+
+
+volumes:
+  static-content:
+  rabbitmq:
+    driver: local
+
+
 services:
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: monorepo-rabitmq
+    networks:
+      - monorepo-network
+    ports:
+      - "7100:15672"
+      - "7101:5672"
+    volumes:
+      - rabbitmq:/rabbitmq
 
   sampleservice01:
     image: ${DOCKER_REGISTRY-}monorepo-sampleservice01
@@ -16,3 +35,9 @@ services:
       dockerfile: SampleService01.dockerfile
     networks:
       - monorepo-network
+    volumes:
+      - static-content:/usr/src/app/public
+
+
+
+
