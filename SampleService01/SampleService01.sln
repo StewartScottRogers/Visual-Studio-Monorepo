@@ -14,6 +14,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService01.ContractTests", "SampleService01.ContractTests\SampleService01.ContractTests.csproj", "{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution TestEnvironments", "Solution TestEnvironments", "{FAA62519-DED5-4488-ADD7-488392FE697A}"
+	ProjectSection(SolutionItems) = preProject
+		testenvironments.json = testenvironments.json
+		testenvironments.png = testenvironments.png
+		testenvironments.url = testenvironments.url
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +41,10 @@ Global
 		{0764F696-CE4E-4570-BE53-FFD19A726D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0764F696-CE4E-4570-BE53-FFD19A726D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0764F696-CE4E-4570-BE53-FFD19A726D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,10 @@
+{
+	"version": "1",
+	"environments": [
+		{
+			"dockerFile": "SampleService01.ContractTests/Dockerfile",
+			"name": "Docker Contract Test Environment",
+			"type": "docker"
+		}
+	]
+}

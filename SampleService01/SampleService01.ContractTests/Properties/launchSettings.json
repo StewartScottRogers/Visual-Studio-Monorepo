@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SampleService01.ContractTests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
