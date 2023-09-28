@@ -17,14 +17,14 @@ FROM source AS release
 
 LABEL unittest=true
 
-#RUN dotnet test  \ 
-    #--configuration release \
-    #--results-directory /testresults \
-    #--verbosity detailed \
-    #--logger "trx;LogFileName=unittest_lib_results.trx" \
-    #--logger "console;verbosity=diagnostic" \
-    #--collect:"XPlat Code Coverage" \
-    #"Lib/Xxxxxxxx.UnitTests/Xxxxxxxx.UnitTests.csproj" 
+RUN dotnet test  \ 
+    --configuration release \
+    --results-directory /testresults \
+    --verbosity detailed \
+    --logger "trx;LogFileName=unittest_results.trx" \
+    --logger "console;verbosity=diagnostic" \
+    --collect:"XPlat Code Coverage" \
+    "SampleService01.UnitTests/SampleService01.UnitTests.csproj" 
 
 
 ######################################################################################
@@ -47,10 +47,10 @@ LABEL unittest=true
 ######################################################################################
 WORKDIR /app/source/
 
-RUN dotnet restore "Xxxxxxxx.Yyyyyyyyyy/Xxxxxxxx.Yyyyyyyyyy.csproj" \
+RUN dotnet restore "SampleService01/SampleService01.csproj" \
     --verbosity detailed --disable-parallel
 
-RUN dotnet publish "Xxxxxxxx.Yyyyyyyyyy/Xxxxxxxx.Yyyyyyyyyy.csproj" \ 
+RUN dotnet publish "SampleService01/SampleService01.csproj" \ 
     --verbosity detailed --configuration release --output /app/publish --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false 
 
 
@@ -58,4 +58,4 @@ FROM mcr.microsoft.com/dotnet/runtime:7.0-alpine AS container
 COPY --from=release /app/publish/  /app
 
 WORKDIR /app
-CMD ["./Xxxxxxxx.Yyyyyyyyyy"]
+CMD ["./SampleService01"]
