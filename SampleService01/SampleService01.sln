@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{A9
 		Pipeline\Pipeline-Readme.txt = Pipeline\Pipeline-Readme.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleService01.Processor", "SampleService01.Processor\SampleService01.Processor.csproj", "{F125AB13-939F-4397-B4FF-97EAE304DC79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F125AB13-939F-4397-B4FF-97EAE304DC79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F125AB13-939F-4397-B4FF-97EAE304DC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F125AB13-939F-4397-B4FF-97EAE304DC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F125AB13-939F-4397-B4FF-97EAE304DC79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
