@@ -6,8 +6,8 @@
     <ProjectGuid>3154c5e7-2f65-4e8f-a965-3c4648d1c982</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="buildSampleService01.cmd" />
-    <None Include="buildSampleService01ContractTests.cmd" />
+    <None Include="SampleService01.dockerfile.cmd" />
+    <None Include="SampleService01.ContractTest.dockerfile.cmd" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>

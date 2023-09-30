@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96D52026-F7A8-4A9A-9382-57005A14DDDC}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService01.ContractTests", "SampleService01.ContractTests\SampleService01.ContractTests.csproj", "{FFB2FE41-E5AE-46F4-AC3A-FA397817E2CB}"
@@ -28,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{A9
 		Pipeline\Pipeline-Readme.txt = Pipeline\Pipeline-Readme.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleService01.Processor", "SampleService01.Processor\SampleService01.Processor.csproj", "{F125AB13-939F-4397-B4FF-97EAE304DC79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService01.Processor", "SampleService01.Processor\SampleService01.Processor.csproj", "{F125AB13-939F-4397-B4FF-97EAE304DC79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -14,6 +14,8 @@
     <None Include=".dockerignore" />
     <None Include="remove.cmd" />
     <None Include="down.cmd" />
+    <None Include="SampleService01Build.cmd" />
+    <None Include="SampleService01ContractTestsBuild.cmd" />
     <None Include="up.cmd" />
   </ItemGroup>
 </Project>

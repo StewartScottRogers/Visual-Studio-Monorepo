@@ -47,8 +47,8 @@ RUN dotnet test  \
 ######################################################################################
 WORKDIR /app/source/
 
-RUN dotnet restore "SampleService01/SampleService01.csproj" \
-    --verbosity detailed --disable-parallel
+#RUN dotnet restore "SampleService01/SampleService01.csproj" \
+#    --verbosity detailed --disable-parallel
 
 RUN dotnet publish "SampleService01/SampleService01.csproj" \ 
     --verbosity detailed --configuration release --output /app/publish --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false 

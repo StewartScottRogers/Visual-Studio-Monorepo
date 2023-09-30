@@ -8,13 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{522526BE-D631-436C-82AE-D0887652392C}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nupkgs", "nupkgs", "{AF89672D-83FF-4B74-859E-EDAAC843D4FA}"
-	ProjectSection(SolutionItems) = preProject
-		ObjectModels.1.0.0.nupkg = ObjectModels.1.0.0.nupkg
-		ObjectModels.1.0.0.symbols.nupkg = ObjectModels.1.0.0.symbols.nupkg
-	EndProjectSection
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{D90C9229-01CD-4F08-BED6-236B4DCDF207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FA14C10-A0DE-4289-AA11-9832D06D8EF5}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\Shared.projitems*{d90c9229-01cd-4f08-bed6-236b4dcdf207}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

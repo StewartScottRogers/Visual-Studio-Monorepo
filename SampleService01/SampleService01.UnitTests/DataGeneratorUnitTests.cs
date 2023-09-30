@@ -1,5 +1,5 @@
+using ObjectModels.Models;
 using SampleService01.DataGeneration;
-using SampleService01.DataGeneration.Models;
 
 namespace SampleService01.UnitTests
 {

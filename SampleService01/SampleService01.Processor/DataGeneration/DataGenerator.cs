@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using SampleService01.DataGeneration.Models;
+using ObjectModels.Models;
 
 namespace SampleService01.DataGeneration;
 

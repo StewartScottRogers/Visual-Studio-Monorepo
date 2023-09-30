@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -6,10 +6,15 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <Title>Object Models</Title>
-    <PackAsTool>True</PackAsTool>
+    <PackAsTool>False</PackAsTool>
     <IncludeSymbols>True</IncludeSymbols>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageOutputPath>$(OutputPath)..\</PackageOutputPath>
+    <PackageOutputPath>$(OutputPath)..\Shared\</PackageOutputPath>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Version>1.0.3</Version>
+    <FileVersion>1.0.3.0</FileVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
   </PropertyGroup>
 
 </Project>
