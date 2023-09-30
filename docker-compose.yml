@@ -100,7 +100,7 @@ services:
     image: ${DOCKER_REGISTRY-}monorepo-sampleservice01
     container_name: monorepo-sampleservice01
     build:
-      context: ./SampleService01
+      context: .
       dockerfile: SampleService01.dockerfile
     networks:
       - monorepo-network

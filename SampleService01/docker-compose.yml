@@ -1,5 +1,11 @@
 version: '3.4'
 
+networks:
+
+  sample-network:
+    name: visual-studio-sample
+    external: false
+
 services:
 
   sampleservice01:
@@ -8,3 +14,7 @@ services:
     build:
       context: .
       dockerfile: SampleService01/Dockerfile
+    networks:
+       - sample-network
+   # logging:
+   #   driver: "none"
