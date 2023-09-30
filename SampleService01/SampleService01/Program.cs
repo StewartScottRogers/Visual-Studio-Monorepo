@@ -1,18 +1,22 @@
-﻿namespace SampleService01
+﻿using SampleService01.CodeGeneration;
+using SampleService01.DataGeneration;
+using SampleService01.DataGeneration.Models;
+
+namespace SampleService01
 {
     public static class Program
     {
         static void Main(string[] args)
         {
-            long counter = 0;
-            while (true)
+            IEnumerable<Buyer> buyers
+                = DataGenerator
+                    .GenerateBuyersForever();
+
+            foreach (Buyer buyer in buyers)
             {
-                counter++;
-                Console.WriteLine($"Hello, {nameof(counter)}: {counter:0000000000}");
+                buyer.Dump();
                 Task.Delay(TimeSpan.FromSeconds(1)).Wait();
             }
         }
-
-        public static string GetDisplayName() => $"{nameof(SampleService01)}";
     }
 }
