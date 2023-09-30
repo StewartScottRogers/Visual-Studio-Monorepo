@@ -1,4 +1,3 @@
-using SampleService01.CodeGeneration;
 using SampleService01.DataGeneration;
 using SampleService01.DataGeneration.Models;
 

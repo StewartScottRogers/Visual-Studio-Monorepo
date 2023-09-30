@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using SampleService01.DataGeneration.Models;
 
-namespace SampleService01.CodeGeneration;
+namespace SampleService01.DataGeneration;
 
 public static class DataGenerator
 {

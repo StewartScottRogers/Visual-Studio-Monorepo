@@ -9,6 +9,7 @@
     <PackAsTool>True</PackAsTool>
     <IncludeSymbols>True</IncludeSymbols>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>$(OutputPath)..\</PackageOutputPath>
   </PropertyGroup>
 
 </Project>
