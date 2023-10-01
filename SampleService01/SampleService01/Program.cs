@@ -1,4 +1,5 @@
-﻿using ObjectModels.Models;
+﻿using ObjectModels;
+using ObjectModels.Models;
 using SampleService01.DataGeneration;
 
 namespace SampleService01

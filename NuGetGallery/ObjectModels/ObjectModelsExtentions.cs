@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
 
-namespace SampleService01.DataGeneration
+namespace ObjectModels
 {
-    public static class DataGeneratorExtentions
+    public static class ObjectModelsExtentions
     {
         public static void Dump(this object obj)
             => Console.WriteLine(obj.DumpString());
