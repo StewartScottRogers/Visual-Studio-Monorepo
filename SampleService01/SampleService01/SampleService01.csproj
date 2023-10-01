@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+    <PackageReference Include="RabbitMq.Publisher" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

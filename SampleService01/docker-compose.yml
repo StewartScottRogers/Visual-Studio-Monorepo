@@ -8,9 +8,25 @@ networks:
 
 services:
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: rabitmq
+    networks:
+      - sample-network
+    ports:
+      - "7100:15672"
+      - "7101:5672"
+    volumes:
+      - rabbitmq:/rabbitmq
+    # logging:
+    #   driver: "none"
+
+
   sampleservice01:
     image: ${DOCKER_REGISTRY-}sampleservice01
     container_name: sampleservice01
+    depends_on:
+      - rabbitmq
     build:
       context: .
       dockerfile: SampleService01/Dockerfile
@@ -18,3 +34,4 @@ services:
        - sample-network
    # logging:
    #   driver: "none"
+

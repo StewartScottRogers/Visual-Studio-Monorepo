@@ -1,34 +1,35 @@
-﻿using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
+using RabbitMq.SharedProject.Messaging;
+using RabbitMq.SharedProject.Messaging.Extensions;
 using RabbitMQ.Client;
-using RabbitMq.Publisher.Messaging.Extensions;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace RabbitMq.Publisher.Messaging
 {
     public abstract class AbstractMessagePublisher<TModel> where TModel : class
     {
-        private readonly RabbitMqConfiguration _configuration;
+        private readonly RabbitMqConfiguration rabbitMqConfiguration;
 
         protected abstract string Subject { get; }
 
-        private ConnectionFactory _connectionFactory;
+        private ConnectionFactory connectionFactory;
         private ConnectionFactory ConnectionFactory
         {
             get
             {
-                if (_connectionFactory == null)
+                if (connectionFactory == null)
                 {
-                    _connectionFactory = new()
+                    connectionFactory = new()
                     {
-                        HostName = _configuration.Hostname,
-                        Port = _configuration.Port,
-                        UserName = _configuration.UserName,
-                        Password = _configuration.Password
+                        HostName = rabbitMqConfiguration.Hostname,
+                        Port = rabbitMqConfiguration.Port,
+                        UserName = rabbitMqConfiguration.UserName,
+                        Password = rabbitMqConfiguration.Password
                     };
                 }
 
-                return _connectionFactory;
+                return connectionFactory;
             }
         }
 
@@ -38,17 +39,17 @@ namespace RabbitMq.Publisher.Messaging
 
         protected AbstractMessagePublisher(IOptions<RabbitMqConfiguration> options)
         {
-            _configuration = options.Value;
+            rabbitMqConfiguration = options.Value;
 
             Channel = Connection.CreateModel();
-            Channel.ExchangeDeclare(_configuration.Exchange, ExchangeType.Fanout);
+            Channel.ExchangeDeclare(rabbitMqConfiguration.Exchange, ExchangeType.Fanout);
         }
 
         public async Task Send(TModel obj)
         {
             IBasicProperties message = Channel.CreateBasicProperties();
 
-            message.ContentType = _configuration.ContentType;
+            message.ContentType = rabbitMqConfiguration.ContentType;
             message.SetSubject(Subject);
 
             byte[] body = JsonSerializer.SerializeToUtf8Bytes(obj, typeof(TModel));
@@ -60,7 +61,7 @@ namespace RabbitMq.Publisher.Messaging
         {
             await Task.Run(() =>
             {
-                Channel.BasicPublish(_configuration.Exchange, string.Empty, message, body);
+                Channel.BasicPublish(rabbitMqConfiguration.Exchange, string.Empty, message, body);
             });
         }
     }

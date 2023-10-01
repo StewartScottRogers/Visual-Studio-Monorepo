@@ -1,37 +1,38 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using RabbitMq.SharedProject.Messaging;
+using RabbitMq.SharedProject.Messaging.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using RabbitMq.Listener.Messaging.Extensions;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RabbitMq.Listener.Messaging
 {
     public abstract class AbstractMessageListener<TModel> : BackgroundService where TModel : class
     {
-        private readonly RabbitMqConfiguration _configuration;
+        private readonly RabbitMqConfiguration rabbitMqConfiguration;
 
         protected abstract string Subject { get; }
 
-        private ConnectionFactory _connectionFactory;
+        private ConnectionFactory connectionFactory;
         private ConnectionFactory ConnectionFactory
         {
             get
             {
-                if (_connectionFactory == null)
+                if (connectionFactory == null)
                 {
-                    _connectionFactory = new()
+                    connectionFactory = new()
                     {
-                        HostName = _configuration.Hostname,
-                        Port = _configuration.Port,
-                        UserName = _configuration.UserName,
-                        Password = _configuration.Password
+                        HostName = rabbitMqConfiguration.Hostname,
+                        Port = rabbitMqConfiguration.Port,
+                        UserName = rabbitMqConfiguration.UserName,
+                        Password = rabbitMqConfiguration.Password
                     };
                 }
 
-                return _connectionFactory;
+                return connectionFactory;
             }
         }
 
@@ -41,14 +42,14 @@ namespace RabbitMq.Listener.Messaging
 
         protected AbstractMessageListener(IOptions<RabbitMqConfiguration> options)
         {
-            _configuration = options.Value;
+            rabbitMqConfiguration = options.Value;
 
             Channel = Connection.CreateModel();
-            Channel.ExchangeDeclare(_configuration.Exchange, ExchangeType.Fanout);
+            Channel.ExchangeDeclare(rabbitMqConfiguration.Exchange, ExchangeType.Fanout);
 
             QueueDeclareOk result = Channel.QueueDeclare(string.Empty, exclusive: true);
 
-            Channel.QueueBind(result.QueueName, _configuration.Exchange, string.Empty);
+            Channel.QueueBind(result.QueueName, rabbitMqConfiguration.Exchange, string.Empty);
         }
 
         protected abstract void HandleMessage(TModel model);

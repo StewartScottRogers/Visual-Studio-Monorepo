@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using RabbitMQ.Client;
 
-namespace RabbitMq.Listener.Messaging.Extensions
+namespace RabbitMq.SharedProject.Messaging.Extensions
 {
     public static class BasicPropertiesExtensions
     {

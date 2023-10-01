@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <RootNamespace>RabbitMq.Listener</RootNamespace>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <PackageOutputPath>$(OutputPath)..\Shared\</PackageOutputPath>
         <IncludeSymbols>True</IncludeSymbols>
     </PropertyGroup>
@@ -23,5 +23,7 @@
         <HintPath>C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\5.0.0\ref\net5.0\Microsoft.Extensions.Options.dll</HintPath>
       </Reference>
     </ItemGroup>
+
+    <Import Project="..\RabbitMq.SharedProject\RabbitMq.SharedProject.projitems" Label="Shared" />
 
 </Project>

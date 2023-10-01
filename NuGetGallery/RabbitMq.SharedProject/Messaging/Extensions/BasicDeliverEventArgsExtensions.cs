@@ -3,7 +3,7 @@ using System.Text;
 using Newtonsoft.Json;
 using RabbitMQ.Client.Events;
 
-namespace RabbitMq.Publisher.Messaging.Extensions
+namespace RabbitMq.SharedProject.Messaging.Extensions
 {
     public static class BasicDeliverEventArgsExtensions
     {

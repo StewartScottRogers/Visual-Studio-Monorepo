@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMq.Listener", "Rabbit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMq.Publisher", "RabbitMq.Publisher\RabbitMq.Publisher.csproj", "{D2996FD5-9267-4777-AF8A-E8ADBF9590D0}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RabbitMq.SharedProject", "RabbitMq.SharedProject\RabbitMq.SharedProject.shproj", "{78E3B221-46A8-46EA-9947-EE92CFBD9F38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,9 @@ Global
 		SolutionGuid = {7FA14C10-A0DE-4289-AA11-9832D06D8EF5}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		RabbitMq.SharedProject\RabbitMq.SharedProject.projitems*{645513ae-7a5a-4d53-b5da-42fb2f07370d}*SharedItemsImports = 5
+		RabbitMq.SharedProject\RabbitMq.SharedProject.projitems*{78e3b221-46a8-46ea-9947-ee92cfbd9f38}*SharedItemsImports = 13
+		RabbitMq.SharedProject\RabbitMq.SharedProject.projitems*{d2996fd5-9267-4777-af8a-e8adbf9590d0}*SharedItemsImports = 5
 		Shared\Shared.projitems*{d90c9229-01cd-4f08-bed6-236b4dcdf207}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
