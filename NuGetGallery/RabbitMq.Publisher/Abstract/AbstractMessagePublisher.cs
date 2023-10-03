@@ -2,6 +2,7 @@
 using RabbitMq.SharedProject.Messaging;
 using RabbitMq.SharedProject.Messaging.Extensions;
 using RabbitMQ.Client;
+using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -23,31 +24,65 @@ namespace RabbitMq.Publisher.Abstract
         {
             get
             {
-                if (connectionFactory == null)
-                {
-                    connectionFactory = new()
+                if (connectionFactory is null)
+                    try
                     {
-                        HostName = RabbitMqConfiguration.Hostname,
-                        Port = int.Parse(RabbitMqConfiguration.Port),
-                        UserName = RabbitMqConfiguration.UserName,
-                        Password = RabbitMqConfiguration.Password
-                    };
-                }
+                        connectionFactory = new()
+                        {
+                            HostName = RabbitMqConfiguration.Hostname,
+                            Port = int.Parse(RabbitMqConfiguration.Port),
+                            UserName = RabbitMqConfiguration.UserName,
+                            Password = RabbitMqConfiguration.Password
+                        };
+                    }
+                    catch (Exception exception)
+                    {
+                        throw new Exception($"failed new of {nameof(connectionFactory)}.", exception);
+                    }
+
 
                 return connectionFactory;
             }
         }
 
-        private IConnection Connection => ConnectionFactory.CreateConnection();
+        private IConnection Connection
+        {
+            get
+            {
+                try
+                {
+                    return ConnectionFactory.CreateConnection();
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception($"failed {nameof(ConnectionFactory.CreateConnection)}.", exception);
+                }
+            }
+        }
 
         private IModel Channel { get; }
 
         protected AbstractMessagePublisher(IRabbitMqConfiguration iRabbitMqConfiguration)
         {
-            RabbitMqConfiguration = iRabbitMqConfiguration;
+            RabbitMqConfiguration = iRabbitMqConfiguration ?? throw new ArgumentNullException(nameof(iRabbitMqConfiguration));
 
-            Channel = Connection.CreateModel();
-            Channel.ExchangeDeclare(RabbitMqConfiguration.Exchange, ExchangeType.Fanout);
+            try
+            {
+                Channel = Connection.CreateModel();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed {nameof(Connection.CreateModel)}.", exception);
+            }
+
+            try
+            {
+                Channel.ExchangeDeclare(RabbitMqConfiguration.Exchange, ExchangeType.Fanout);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed {nameof(Channel.ExchangeDeclare)}.", exception);
+            }
         }
 
         public async Task Send(TModel tModel)

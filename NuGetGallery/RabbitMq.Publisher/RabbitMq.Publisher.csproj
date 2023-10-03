@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <RootNamespace>RabbitMq.Publisher</RootNamespace>
-        <Version>1.0.8</Version>
+        <Version>1.0.9</Version>
         <PackageOutputPath>$(OutputPath)..\Shared\</PackageOutputPath>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <IncludeSymbols>True</IncludeSymbols>

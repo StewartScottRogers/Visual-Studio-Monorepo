@@ -19,6 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService01.ContractTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleService01.Processor", "SampleService01.Processor\SampleService01.Processor.csproj", "{F125AB13-939F-4397-B4FF-97EAE304DC79}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMq", "RabbitMq", "{4F459B12-CF86-456E-8C9F-824EC6C4F6FA}"
+	ProjectSection(SolutionItems) = preProject
+		RabbitMq\RabbitMQ Management.url = RabbitMq\RabbitMQ Management.url
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
