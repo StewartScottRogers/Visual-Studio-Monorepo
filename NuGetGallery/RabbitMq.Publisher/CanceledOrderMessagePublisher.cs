@@ -8,9 +8,8 @@ namespace RabbitMq.Publisher;
 
 public class CanceledOrderMessagePublisher : AbstractMessagePublisher<CanceledMessageEnvelope<Buyer>>
 {
-    protected override string Subject => "OrderCreated";
-
     public CanceledOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
     {
+        SetSubject("Canceled", "Order");
     }
 }

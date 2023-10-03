@@ -14,7 +14,11 @@ namespace RabbitMq.Listener.Abstract
     {
         private readonly RabbitMqConfiguration rabbitMqConfiguration;
 
-        protected abstract string Subject { get; }
+        protected void SetSubject(string verb, string noune)
+        {
+            Subject = $"{verb.Trim().ToLower()}-{noune.Trim().ToLower()}";
+        }
+        private string Subject { get; set; }
 
         private ConnectionFactory connectionFactory;
         private ConnectionFactory ConnectionFactory

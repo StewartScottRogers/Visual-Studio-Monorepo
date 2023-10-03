@@ -9,14 +9,11 @@ namespace RabbitMq.Listener;
 /// <summary>
 /// Listener that executes when a customer is deleted.
 /// </summary>
-public class FullFilledOrderMessageListener : AbstractMessageListener<FullFilledMessageEnvelope<Buyer>>
+public class FullfilledOrderMessageListener : AbstractMessageListener<FullFilledMessageEnvelope<Buyer>>
 {
-    protected override string Subject => "FullFilledOrderMessage";
-
-
-    public FullFilledOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
+    public FullfilledOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
     {
-
+        SetSubject("Fullfilled", "Order");
     }
 
     protected override void HandleMessage(FullFilledMessageEnvelope<Buyer> model)

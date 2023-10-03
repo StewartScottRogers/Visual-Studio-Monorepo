@@ -8,9 +8,8 @@ namespace RabbitMq.Publisher;
 
 public class CreateOrderMessagePublisher : AbstractMessagePublisher<CreateMessageEnvelope<Buyer>>
 {
-    protected override string Subject => "OrderCreated";
-
     public CreateOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
     {
+        SetSubject("Create", "Order");
     }
 }

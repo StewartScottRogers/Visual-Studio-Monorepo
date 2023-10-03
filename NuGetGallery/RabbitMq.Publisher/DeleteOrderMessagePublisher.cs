@@ -8,9 +8,8 @@ namespace RabbitMq.Publisher;
 
 public class DeleteOrderMessagePublisher : AbstractMessagePublisher<DeleteMessageEnvelope<Buyer>>
 {
-    protected override string Subject => "OrderCreated";
-
     public DeleteOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
     {
+        SetSubject("Delete", "Order");
     }
 }

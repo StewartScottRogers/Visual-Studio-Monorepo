@@ -11,12 +11,9 @@ namespace RabbitMq.Listener;
 /// </summary>
 public class CreateOrderMessageListener : AbstractMessageListener<CreateMessageEnvelope<Buyer>>
 {
-    protected override string Subject => " CreateOrderMessageBuyer";
-
-
     public CreateOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
     {
-
+        SetSubject("Create", "Order");
     }
 
     protected override void HandleMessage(CreateMessageEnvelope<Buyer> model)

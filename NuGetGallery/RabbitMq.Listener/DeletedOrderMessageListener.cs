@@ -11,12 +11,9 @@ namespace RabbitMq.Listener;
 /// </summary>
 public class DeletedOrderMessageListener : AbstractMessageListener<DeleteMessageEnvelope<Buyer>>
 {
-    protected override string Subject => "DeletedOrderMessageBuyer";
-
-
     public DeletedOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
     {
-
+        SetSubject("Deleted", "Order");
     }
 
     protected override void HandleMessage(DeleteMessageEnvelope<Buyer> model)

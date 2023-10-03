@@ -8,9 +8,8 @@ namespace RabbitMq.Publisher;
 
 public class FullfilledOrderMessagePublisher : AbstractMessagePublisher<FullFilledMessageEnvelope<Buyer>>
 {
-    protected override string Subject => "OrderCreated";
-
     public FullfilledOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
     {
+        SetSubject("Fullfilled", "Order");
     }
 }
