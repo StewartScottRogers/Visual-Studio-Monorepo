@@ -12,7 +12,7 @@
     <PackageOutputPath>$(OutputPath)..\Shared\</PackageOutputPath>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Version>1.0.6</Version>
+    <Version>1.0.9</Version>
     <FileVersion></FileVersion>
     <AssemblyVersion></AssemblyVersion>
   </PropertyGroup>

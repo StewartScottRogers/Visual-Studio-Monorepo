@@ -9,8 +9,9 @@
     <Import_RootNamespace>RabbitMq.SharedProject</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IRabbitMqConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\Extensions\BasicDeliverEventArgsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\Extensions\IBasicPropertiesExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Messaging\RabbitMqConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RabbitMqConfiguration.cs" />
   </ItemGroup>
 </Project>

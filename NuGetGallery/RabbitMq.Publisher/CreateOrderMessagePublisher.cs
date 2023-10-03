@@ -7,7 +7,7 @@ namespace RabbitMq.Publisher;
 
 public class CreateOrderMessagePublisher : AbstractMessagePublisher<Buyer>
 {
-    public CreateOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
+    public CreateOrderMessagePublisher(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
     {
         SetSubject("Create", "Order");
     }

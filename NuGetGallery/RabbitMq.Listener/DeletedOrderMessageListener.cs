@@ -11,7 +11,7 @@ namespace RabbitMq.Listener;
 /// </summary>
 public class DeletedOrderMessageListener : AbstractMessageListener<Buyer>
 {
-    public DeletedOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
+    public DeletedOrderMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
     {
         SetSubject("Deleted", "Order");
     }

@@ -11,7 +11,7 @@ namespace RabbitMq.Listener;
 /// </summary>
 public class CreateOrderMessageListener : AbstractMessageListener<Buyer>
 {
-    public CreateOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
+    public CreateOrderMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
     {
         SetSubject("Create", "Order");
     }

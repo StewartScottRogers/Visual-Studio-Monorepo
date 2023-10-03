@@ -8,7 +8,7 @@ namespace RabbitMq.Publisher;
 
 public class CanceledOrderMessagePublisher : AbstractMessagePublisher<Buyer>
 {
-    public CanceledOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
+    public CanceledOrderMessagePublisher(IRabbitMqConfiguration options) : base(options)
     {
         SetSubject("Canceled", "Order");
     }

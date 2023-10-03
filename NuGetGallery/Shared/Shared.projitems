@@ -11,9 +11,15 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.6.nupkg" />
     <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.6.snupkg" />
+    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.7.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.7.snupkg" />
     <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.2.nupkg" />
     <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.2.symbols.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.3.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.3.symbols.nupkg" />
     <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.2.nupkg" />
     <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.2.symbols.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.3.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.3.symbols.nupkg" />
   </ItemGroup>
 </Project>

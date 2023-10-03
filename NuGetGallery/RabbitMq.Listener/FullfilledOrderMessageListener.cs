@@ -11,7 +11,7 @@ namespace RabbitMq.Listener;
 /// </summary>
 public class FullfilledOrderMessageListener : AbstractMessageListener<Buyer>
 {
-    public FullfilledOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
+    public FullfilledOrderMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
     {
         SetSubject("Fullfilled", "Order");
     }

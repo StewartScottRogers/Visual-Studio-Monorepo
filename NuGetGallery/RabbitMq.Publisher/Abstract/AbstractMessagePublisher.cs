@@ -9,7 +9,7 @@ namespace RabbitMq.Publisher.Abstract
 {
     public abstract class AbstractMessagePublisher<TModel> where TModel : class
     {
-        private readonly RabbitMqConfiguration rabbitMqConfiguration;
+        private readonly IRabbitMqConfiguration RabbitMqConfiguration;
 
         protected void SetSubject(string verb, string noune)
         {
@@ -27,10 +27,10 @@ namespace RabbitMq.Publisher.Abstract
                 {
                     connectionFactory = new()
                     {
-                        HostName = rabbitMqConfiguration.Hostname,
-                        Port = int.Parse(rabbitMqConfiguration.Port),
-                        UserName = rabbitMqConfiguration.UserName,
-                        Password = rabbitMqConfiguration.Password
+                        HostName = RabbitMqConfiguration.Hostname,
+                        Port = int.Parse(RabbitMqConfiguration.Port),
+                        UserName = RabbitMqConfiguration.UserName,
+                        Password = RabbitMqConfiguration.Password
                     };
                 }
 
@@ -42,26 +42,26 @@ namespace RabbitMq.Publisher.Abstract
 
         private IModel Channel { get; }
 
-        protected AbstractMessagePublisher(IOptions<RabbitMqConfiguration> options)
+        protected AbstractMessagePublisher(IRabbitMqConfiguration iRabbitMqConfiguration)
         {
-            rabbitMqConfiguration = options.Value;
+            RabbitMqConfiguration = iRabbitMqConfiguration;
 
             Channel = Connection.CreateModel();
-            Channel.ExchangeDeclare(rabbitMqConfiguration.Exchange, ExchangeType.Fanout);
+            Channel.ExchangeDeclare(RabbitMqConfiguration.Exchange, ExchangeType.Fanout);
         }
 
         public async Task Send(TModel tModel)
         {
             IBasicProperties message = Channel.CreateBasicProperties();
 
-            message.ContentType = rabbitMqConfiguration.ContentType;
+            message.ContentType = RabbitMqConfiguration.ContentType;
             message.SetSubject(subject);
 
             byte[] body = JsonSerializer.SerializeToUtf8Bytes(tModel, typeof(TModel));
 
             await Task.Run(() =>
             {
-                Channel.BasicPublish(rabbitMqConfiguration.Exchange, string.Empty, message, body);
+                Channel.BasicPublish(RabbitMqConfiguration.Exchange, string.Empty, message, body);
             });
         }
     }

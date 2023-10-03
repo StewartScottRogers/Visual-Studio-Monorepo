@@ -8,7 +8,7 @@ namespace RabbitMq.Listener;
 
 public class CanceledOrderMessageListener : AbstractMessageListener<Buyer>
 {
-    public CanceledOrderMessageListener(IOptions<RabbitMqConfiguration> options) : base(options)
+    public CanceledOrderMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
     {
         SetSubject("Canceled", "Order");
     }

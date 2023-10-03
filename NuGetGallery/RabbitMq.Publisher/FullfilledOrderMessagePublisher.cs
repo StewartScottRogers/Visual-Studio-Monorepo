@@ -7,7 +7,7 @@ namespace RabbitMq.Publisher;
 
 public class FullfilledOrderMessagePublisher : AbstractMessagePublisher<Buyer>
 {
-    public FullfilledOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
+    public FullfilledOrderMessagePublisher(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
     {
         SetSubject("Fullfilled", "Order");
     }

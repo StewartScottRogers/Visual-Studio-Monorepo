@@ -12,7 +12,7 @@ namespace RabbitMq.Listener.Abstract
 {
     public abstract class AbstractMessageListener<TModel> : BackgroundService where TModel : class
     {
-        private readonly RabbitMqConfiguration rabbitMqConfiguration;
+        private readonly IRabbitMqConfiguration RabbitMqConfiguration;
 
         protected void SetSubject(string verb, string noune)
         {
@@ -29,10 +29,10 @@ namespace RabbitMq.Listener.Abstract
                 {
                     connectionFactory = new()
                     {
-                        HostName = rabbitMqConfiguration.Hostname,
-                        Port = int.Parse(rabbitMqConfiguration.Port),
-                        UserName = rabbitMqConfiguration.UserName,
-                        Password = rabbitMqConfiguration.Password
+                        HostName = RabbitMqConfiguration.Hostname,
+                        Port = int.Parse(RabbitMqConfiguration.Port),
+                        UserName = RabbitMqConfiguration.UserName,
+                        Password = RabbitMqConfiguration.Password
                     };
                 }
 
@@ -44,16 +44,16 @@ namespace RabbitMq.Listener.Abstract
 
         private IModel Channel { get; }
 
-        protected AbstractMessageListener(IOptions<RabbitMqConfiguration> options)
+        protected AbstractMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration)
         {
-            rabbitMqConfiguration = options.Value;
+            RabbitMqConfiguration = iRabbitMqConfiguration;
 
             Channel = Connection.CreateModel();
-            Channel.ExchangeDeclare(rabbitMqConfiguration.Exchange, ExchangeType.Fanout);
+            Channel.ExchangeDeclare(RabbitMqConfiguration.Exchange, ExchangeType.Fanout);
 
             QueueDeclareOk result = Channel.QueueDeclare(string.Empty, exclusive: true);
 
-            Channel.QueueBind(result.QueueName, rabbitMqConfiguration.Exchange, string.Empty);
+            Channel.QueueBind(result.QueueName, RabbitMqConfiguration.Exchange, string.Empty);
         }
 
         protected abstract void HandleMessage(TModel model);

@@ -7,7 +7,7 @@ namespace RabbitMq.Publisher;
 
 public class DeleteOrderMessagePublisher : AbstractMessagePublisher<Buyer>
 {
-    public DeleteOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
+    public DeleteOrderMessagePublisher(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
     {
         SetSubject("Delete", "Order");
     }
