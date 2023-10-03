@@ -10,6 +10,8 @@ namespace SampleService01
     {
         static async Task Main(string[] args)
         {
+            RabbitMqConfiguration.DumpEnvironmentVariables();
+
             CreateOrderMessagePublisher createOrderMessagePublisher
                 = new CreateOrderMessagePublisher(new RabbitMqConfiguration());
 

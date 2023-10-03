@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics;
 
 namespace RabbitMq.SharedProject.Messaging
 {
     public class RabbitMqConfiguration : IRabbitMqConfiguration
     {
+
+        [Conditional("DEBUG")]
+        public static void DumpEnvironmentVariables()
+        {
+            IDictionary environmentVariables = Environment.GetEnvironmentVariables();
+            foreach (object variable in environmentVariables)
+                Console.WriteLine(variable.ToString());
+        }
 
         public string Hostname { get => GetEnvironmentVariable($"{nameof(Hostname)}"); }
 
@@ -30,12 +39,7 @@ namespace RabbitMq.SharedProject.Messaging
                 = Environment.GetEnvironmentVariable(variable);
 
             if (result is null)
-            {
-                IDictionary environmentVariables 
-                    = Environment.GetEnvironmentVariables();
-
-                throw new NullReferenceException(nameof(result));
-            }
+                throw new NullReferenceException(nameof(result), new ArgumentException($"Not Found '{variable}'."));
 
             return result;
         }

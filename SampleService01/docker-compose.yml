@@ -1,10 +1,5 @@
 version: '3.4'
 
-networks:
-
-  sample-network:
-    name: visual-studio-sample
-    external: false
 
 volumes:
 
@@ -16,8 +11,6 @@ services:
   rabbitmq:
     image: "rabbitmq:3-management"
     container_name: rabitmq
-    networks:
-      - sample-network
     ports:
       - "7100:15672"
       - "7101:5672"
@@ -36,14 +29,12 @@ services:
       context: .
       dockerfile: SampleService01/Dockerfile
     environment:
-     -RabbitMqHostname: localhost
-     -RabbitMqUserName: guest
-     -RabbitMqPassword: guest
-     -RabbitMqPort: "7101"
-     -RabbitMqContentType: application/json
-     -RabbitMqExchange: buyerexchange
-    networks:
-       - sample-network
+     - RabbitMqHostname=localhost
+     - RabbitMqUserName=guest
+     - RabbitMqPassword=guest
+     - RabbitMqPort=7101
+     - RabbitMqContentType=application/json
+     - RabbitMqExchange=buyerexchange
    # logging:
    #   driver: "none"
 
