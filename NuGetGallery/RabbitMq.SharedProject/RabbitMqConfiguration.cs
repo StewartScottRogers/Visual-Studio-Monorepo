@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace RabbitMq.SharedProject.Messaging
 {
@@ -29,7 +30,12 @@ namespace RabbitMq.SharedProject.Messaging
                 = Environment.GetEnvironmentVariable(variable);
 
             if (result is null)
+            {
+                IDictionary environmentVariables 
+                    = Environment.GetEnvironmentVariables();
+
                 throw new NullReferenceException(nameof(result));
+            }
 
             return result;
         }
