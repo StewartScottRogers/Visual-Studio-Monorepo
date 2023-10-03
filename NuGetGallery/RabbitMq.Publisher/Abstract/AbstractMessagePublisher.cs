@@ -13,9 +13,10 @@ namespace RabbitMq.Publisher.Abstract
 
         protected void SetSubject(string verb, string noune)
         {
-            Subject = $"{verb.Trim().ToLower()}-{noune.Trim().ToLower()}";
+            subject = $"{verb.Trim().ToLower()}-{noune.Trim().ToLower()}";
         }
-        private string Subject { get; set; }
+
+        private string subject;
 
         private ConnectionFactory connectionFactory;
         private ConnectionFactory ConnectionFactory
@@ -49,20 +50,15 @@ namespace RabbitMq.Publisher.Abstract
             Channel.ExchangeDeclare(rabbitMqConfiguration.Exchange, ExchangeType.Fanout);
         }
 
-        public async Task Send(TModel obj)
+        public async Task Send(TModel tModel)
         {
             IBasicProperties message = Channel.CreateBasicProperties();
 
             message.ContentType = rabbitMqConfiguration.ContentType;
-            message.SetSubject(Subject);
+            message.SetSubject(subject);
 
-            byte[] body = JsonSerializer.SerializeToUtf8Bytes(obj, typeof(TModel));
+            byte[] body = JsonSerializer.SerializeToUtf8Bytes(tModel, typeof(TModel));
 
-            await DoSend(message, body);
-        }
-
-        private async Task DoSend(IBasicProperties message, byte[] body)
-        {
             await Task.Run(() =>
             {
                 Channel.BasicPublish(rabbitMqConfiguration.Exchange, string.Empty, message, body);

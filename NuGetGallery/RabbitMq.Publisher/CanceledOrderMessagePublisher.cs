@@ -6,7 +6,7 @@ using RabbitMq.SharedProject.Messaging;
 
 namespace RabbitMq.Publisher;
 
-public class CanceledOrderMessagePublisher : AbstractMessagePublisher<CanceledMessageEnvelope<Buyer>>
+public class CanceledOrderMessagePublisher : AbstractMessagePublisher<Buyer>
 {
     public CanceledOrderMessagePublisher(IOptions<RabbitMqConfiguration> options) : base(options)
     {

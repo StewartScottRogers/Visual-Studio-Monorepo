@@ -16,9 +16,9 @@ namespace RabbitMq.Listener.Abstract
 
         protected void SetSubject(string verb, string noune)
         {
-            Subject = $"{verb.Trim().ToLower()}-{noune.Trim().ToLower()}";
+            subject = $"{verb.Trim().ToLower()}-{noune.Trim().ToLower()}";
         }
-        private string Subject { get; set; }
+        private string subject;
 
         private ConnectionFactory connectionFactory;
         private ConnectionFactory ConnectionFactory
@@ -85,7 +85,7 @@ namespace RabbitMq.Listener.Abstract
 
         private bool ShouldHandleMessage(BasicDeliverEventArgs args)
         {
-            return args.GetSubject()?.Equals(Subject, StringComparison.OrdinalIgnoreCase)
+            return args.GetSubject()?.Equals(subject, StringComparison.OrdinalIgnoreCase)
                 ?? false;
         }
     }
