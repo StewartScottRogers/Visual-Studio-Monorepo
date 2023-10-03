@@ -30,7 +30,7 @@ namespace RabbitMq.Listener.Abstract
                     connectionFactory = new()
                     {
                         HostName = rabbitMqConfiguration.Hostname,
-                        Port = rabbitMqConfiguration.Port,
+                        Port = int.Parse(rabbitMqConfiguration.Port),
                         UserName = rabbitMqConfiguration.UserName,
                         Password = rabbitMqConfiguration.Password
                     };

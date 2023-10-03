@@ -9,19 +9,11 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.2.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.2.snupkg" />
-    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.3.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.3.snupkg" />
-    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.4.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.4.snupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.0.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.0.symbols.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.1.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.1.symbols.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.0.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.0.symbols.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.1.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.1.symbols.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.6.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.6.snupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.2.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.2.symbols.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.2.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.2.symbols.nupkg" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,11 @@ networks:
     name: visual-studio-sample
     external: false
 
+volumes:
+
+  rabbitmq:
+    driver: local
+
 services:
 
   rabbitmq:
@@ -30,6 +35,13 @@ services:
     build:
       context: .
       dockerfile: SampleService01/Dockerfile
+    environment:
+     -RabbitMqHostname: localhost
+     -RabbitMqUserName: guest
+     -RabbitMqPassword: guest
+     -RabbitMqPort: "7101"
+     -RabbitMqContentType: application/json
+     -RabbitMqExchange: buyerexchange
     networks:
        - sample-network
    # logging:
