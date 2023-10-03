@@ -5,7 +5,7 @@ using RabbitMQ.Client;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace RabbitMq.Publisher.Messaging
+namespace RabbitMq.Publisher.Abstract
 {
     public abstract class AbstractMessagePublisher<TModel> where TModel : class
     {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace ObjectModels
+namespace ObjectModels.Extientions
 {
     public static class ObjectModelsExtentions
     {

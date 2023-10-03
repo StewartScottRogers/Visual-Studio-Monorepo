@@ -8,7 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RabbitMq.Listener.Messaging
+namespace RabbitMq.Listener.Abstract
 {
     public abstract class AbstractMessageListener<TModel> : BackgroundService where TModel : class
     {
