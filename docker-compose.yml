@@ -2,8 +2,7 @@ version: '3.4'
 
 networks:
 
-  monorepo-network:
-    name: visual-studio-monorepo
+  default:
     driver: bridge
 
 
@@ -15,29 +14,38 @@ volumes:
 
 services:
 
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    container_name: monorepo-rabitmq
-    networks:
-      - monorepo-network
+  monorepo-rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    container_name: monorepo-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     ports:
+         # AMQP protocol port
         - 5672:5672
+        # HTTP management UI
         - 15672:15672
     volumes:
       - rabbitmq:/rabbitmq
     # logging:
     #   driver: "none"
 
-  sampleservice01:
+
+  monorepo-sampleservice01:
     image: ${DOCKER_REGISTRY-}monorepo-sampleservice01
     container_name: monorepo-sampleservice01
     depends_on:
-      - rabbitmq
+      - monorepo-rabbitmq
     build:
       context: .
       dockerfile: SampleService01.dockerfile
-    networks:
-      - monorepo-network
+    environment:
+     - RabbitMqHostname=monorepo-rabbitmq
+     - RabbitMqUserName=guest
+     - RabbitMqPassword=guest
+     - RabbitMqPort=5672
+     - RabbitMqContentType=application/json
+     - RabbitMqExchange=amq.topic
     # logging:
     #   driver: "none"
 
