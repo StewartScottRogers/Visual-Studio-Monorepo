@@ -4,6 +4,7 @@ networks:
 
   monorepo-network:
     name: visual-studio-monorepo
+    driver: bridge
 
 
 volumes:
@@ -20,8 +21,8 @@ services:
     networks:
       - monorepo-network
     ports:
-      - "7100:15672"
-      - "7101:5672"
+        - 5672:5672
+        - 15672:15672
     volumes:
       - rabbitmq:/rabbitmq
     # logging:

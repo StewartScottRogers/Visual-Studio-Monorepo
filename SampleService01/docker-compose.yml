@@ -1,19 +1,28 @@
 version: '3.4'
 
-
 volumes:
 
   rabbitmq:
     driver: local
 
+networks:
+
+  default:
+    driver: bridge
+
 services:
 
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    container_name: rabitmq
+  sampleservice01-rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    container_name: sampleservice01-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     ports:
-      - "7100:15672"
-      - "7101:5672"
+         # AMQP protocol port
+        - 5672:5672
+        # HTTP management UI
+        - 15672:15672
     volumes:
       - rabbitmq:/rabbitmq
     # logging:
@@ -24,17 +33,17 @@ services:
     image: ${DOCKER_REGISTRY-}sampleservice01
     container_name: sampleservice01
     depends_on:
-      - rabbitmq
+      - sampleservice01-rabbitmq
     build:
       context: .
       dockerfile: SampleService01/Dockerfile
     environment:
-     - RabbitMqHostname=localhost
+     - RabbitMqHostname=sampleservice01-rabbitmq
      - RabbitMqUserName=guest
      - RabbitMqPassword=guest
-     - RabbitMqPort=7101
+     - RabbitMqPort=5672
      - RabbitMqContentType=application/json
-     - RabbitMqExchange=buyerexchange
+     - RabbitMqExchange=amq.topic
    # logging:
    #   driver: "none"
 

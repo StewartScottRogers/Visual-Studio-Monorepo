@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Options;
-using RabbitMq.SharedProject.Messaging;
+﻿using RabbitMq.SharedProject.Messaging;
 using RabbitMq.SharedProject.Messaging.Extensions;
 using RabbitMQ.Client;
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -12,9 +12,16 @@ namespace RabbitMq.Publisher.Abstract
     {
         private readonly IRabbitMqConfiguration RabbitMqConfiguration;
 
-        protected void SetSubject(string verb, string noune)
+        protected void SetSubject(string verb, string noun)
         {
-            subject = $"{verb.Trim().ToLower()}-{noune.Trim().ToLower()}";
+            if (verb is null)
+                throw new ArgumentNullException(nameof(verb));
+
+            if (noun is null)
+                throw new ArgumentNullException(nameof(noun));
+
+
+            subject = $"{verb.Trim().ToLower()}-{noun.Trim().ToLower()}";
         }
 
         private string subject;
@@ -39,7 +46,6 @@ namespace RabbitMq.Publisher.Abstract
                     {
                         throw new Exception($"failed new of {nameof(connectionFactory)}.", exception);
                     }
-
 
                 return connectionFactory;
             }
@@ -77,7 +83,16 @@ namespace RabbitMq.Publisher.Abstract
 
             try
             {
-                Channel.ExchangeDeclare(RabbitMqConfiguration.Exchange, ExchangeType.Fanout);
+                Channel
+                    .ExchangeDeclare(
+                        exchange: RabbitMqConfiguration.Exchange,
+                        type: ExchangeType.Topic,
+                        durable: true,
+                        autoDelete: false,
+                        arguments: new Dictionary<string, object>()
+                        {
+                        }
+                    );
             }
             catch (Exception exception)
             {
@@ -85,19 +100,22 @@ namespace RabbitMq.Publisher.Abstract
             }
         }
 
-        public async Task Send(TModel tModel)
+        public void Send(TModel tModel)
         {
-            IBasicProperties message = Channel.CreateBasicProperties();
-
-            message.ContentType = RabbitMqConfiguration.ContentType;
-            message.SetSubject(subject);
-
-            byte[] body = JsonSerializer.SerializeToUtf8Bytes(tModel, typeof(TModel));
-
-            await Task.Run(() =>
+            try
             {
+                IBasicProperties message = Channel.CreateBasicProperties();
+
+                message.ContentType = RabbitMqConfiguration.ContentType;
+                message.SetSubject(subject);
+
+                byte[] body = JsonSerializer.SerializeToUtf8Bytes(tModel, typeof(TModel));
                 Channel.BasicPublish(RabbitMqConfiguration.Exchange, string.Empty, message, body);
-            });
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed {nameof(Send)}.", exception);
+            }
         }
     }
 }
