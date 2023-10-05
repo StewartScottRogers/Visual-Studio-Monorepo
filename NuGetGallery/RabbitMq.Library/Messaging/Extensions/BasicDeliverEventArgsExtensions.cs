@@ -1,7 +1,8 @@
-﻿using System.Linq;
+﻿using RabbitMQ.Client.Events;
+using System;
+using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
-using RabbitMQ.Client.Events;
+using System.Text.Json;
 
 namespace RabbitMq.SharedProject.Messaging.Extensions
 {
@@ -11,11 +12,14 @@ namespace RabbitMq.SharedProject.Messaging.Extensions
         {
             string content = Encoding.UTF8.GetString(args.Body.ToArray());
 
-            return JsonConvert.DeserializeObject<T>(content);
+            return JsonSerializer.Deserialize<T>(content);
         }
 
         public static string GetSubject(this BasicDeliverEventArgs args)
         {
+            if (args is null)
+                throw new ArgumentNullException(nameof(args));
+
             return args.BasicProperties.Headers?
                 .Where(c => c.Key == "Subject")
                 .Select(t => ParseHeaderString(t.Value))

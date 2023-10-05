@@ -1,6 +1,8 @@
 ﻿using ObjectModels.Extientions;
 using ObjectModels.Models;
+using RabbitMq.Listener;
 using RabbitMq.Publisher;
+
 using RabbitMq.SharedProject.Messaging;
 using SampleService01.DataGeneration;
 
@@ -14,8 +16,21 @@ namespace SampleService01
             {
                 RabbitMqConfiguration.DumpEnvironmentVariables();
 
+                RabbitMqConfiguration rabbitMqConfiguration
+                    = new RabbitMqConfiguration();
+
                 CreateOrderMessagePublisher createOrderMessagePublisher
-                    = new CreateOrderMessagePublisher(new RabbitMqConfiguration());
+                    = new CreateOrderMessagePublisher(rabbitMqConfiguration);
+
+                Task.Delay(TimeSpan.FromSeconds(3)).Wait();
+
+                CreateOrderMessageListener createOrderMessageListener
+                    = new CreateOrderMessageListener(
+                        rabbitMqConfiguration, (buyer) =>
+                        {
+                            buyer.Dump();
+                        }
+                    );
 
                 IEnumerable<Buyer> buyers
                     = DataGenerator
@@ -23,7 +38,7 @@ namespace SampleService01
 
                 foreach (Buyer buyer in buyers)
                 {
-                    buyer.Dump();
+                    //buyer.Dump();
 
                     createOrderMessagePublisher.Send(buyer);
 

@@ -20,7 +20,6 @@ namespace RabbitMq.Publisher.Abstract
             if (noun is null)
                 throw new ArgumentNullException(nameof(noun));
 
-
             subject = $"{verb.Trim().ToLower()}-{noun.Trim().ToLower()}";
         }
 

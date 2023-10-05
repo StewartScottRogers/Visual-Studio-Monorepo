@@ -38,7 +38,7 @@ public static class DataGenerator
                .RuleFor(buyer => buyer.Orders, fake => orders.Generate(fake.Random.Number(1, 7)))
                .FinishWith((fake, buyer) =>
                {
-                   Console.WriteLine($"Buyer Created! buyerIds: '{buyer.Id:000000000000}'.");
+                   //Console.WriteLine($"Buyer Created! buyerIds: '{buyer.Id:000000000000}'.");
                });
 
         return buyers.GenerateForever();

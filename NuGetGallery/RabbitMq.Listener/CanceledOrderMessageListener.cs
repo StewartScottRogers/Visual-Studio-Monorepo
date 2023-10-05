@@ -1,20 +1,22 @@
-﻿using Microsoft.Extensions.Options;
-using ObjectModels;
-using ObjectModels.Models;
+﻿using ObjectModels.Models;
 using RabbitMq.Listener.Abstract;
 using RabbitMq.SharedProject.Messaging;
+using System;
 
 namespace RabbitMq.Listener;
 
 public class CanceledOrderMessageListener : AbstractMessageListener<Buyer>
 {
-    public CanceledOrderMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration) : base(iRabbitMqConfiguration)
+    private readonly Action<Buyer> Action;
+
+    public CanceledOrderMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration, Action<Buyer> action) : base(iRabbitMqConfiguration)
     {
+        Action = action;
         SetSubject("Canceled", "Order");
     }
 
     protected override void HandleMessage(Buyer model)
     {
-
+        Action(model);
     }
 }

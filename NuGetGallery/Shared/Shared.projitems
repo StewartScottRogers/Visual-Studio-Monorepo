@@ -9,9 +9,13 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.11.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.11.symbols.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.11.nupkg" />
-    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.11.symbols.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.16.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)ObjectModels.1.0.16.snupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Library.1.0.16.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Library.1.0.16.symbols.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.16.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Listener.1.0.16.symbols.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.16.nupkg" />
+    <None Include="$(MSBuildThisFileDirectory)RabbitMq.Publisher.1.0.16.symbols.nupkg" />
   </ItemGroup>
 </Project>

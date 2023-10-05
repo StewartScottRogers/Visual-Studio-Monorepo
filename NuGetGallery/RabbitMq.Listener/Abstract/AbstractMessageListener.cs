@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using RabbitMq.SharedProject.Messaging;
 using RabbitMq.SharedProject.Messaging.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,9 +14,15 @@ namespace RabbitMq.Listener.Abstract
     {
         private readonly IRabbitMqConfiguration RabbitMqConfiguration;
 
-        protected void SetSubject(string verb, string noune)
+        protected void SetSubject(string verb, string noun)
         {
-            subject = $"{verb.Trim().ToLower()}-{noune.Trim().ToLower()}";
+            if (verb is null)
+                throw new ArgumentNullException(nameof(verb));
+
+            if (noun is null)
+                throw new ArgumentNullException(nameof(noun));
+
+            subject = $"{verb.Trim().ToLower()}-{noun.Trim().ToLower()}";
         }
         private string subject;
 
@@ -25,68 +31,136 @@ namespace RabbitMq.Listener.Abstract
         {
             get
             {
-                if (connectionFactory == null)
-                {
-                    connectionFactory = new()
+                if (connectionFactory is null)
+                    try
                     {
-                        HostName = RabbitMqConfiguration.Hostname,
-                        Port = int.Parse(RabbitMqConfiguration.Port),
-                        UserName = RabbitMqConfiguration.UserName,
-                        Password = RabbitMqConfiguration.Password
-                    };
-                }
+                        connectionFactory = new()
+                        {
+                            HostName = RabbitMqConfiguration.Hostname,
+                            Port = int.Parse(RabbitMqConfiguration.Port),
+                            UserName = RabbitMqConfiguration.UserName,
+                            Password = RabbitMqConfiguration.Password
+                        };
+                    }
+                    catch (Exception exception)
+                    {
+                        throw new Exception($"failed new of {nameof(connectionFactory)}.", exception);
+                    }
 
                 return connectionFactory;
             }
         }
 
-        private IConnection Connection => ConnectionFactory.CreateConnection();
+        private IConnection Connection
+        {
+            get
+            {
+                try
+                {
+                    return ConnectionFactory.CreateConnection();
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception($"failed {nameof(ConnectionFactory.CreateConnection)}.", exception);
+                }
+            }
+        }
 
         private IModel Channel { get; }
 
         protected AbstractMessageListener(IRabbitMqConfiguration iRabbitMqConfiguration)
         {
-            RabbitMqConfiguration = iRabbitMqConfiguration;
+            RabbitMqConfiguration = iRabbitMqConfiguration ?? throw new ArgumentNullException(nameof(iRabbitMqConfiguration));
 
-            Channel = Connection.CreateModel();
-            Channel.ExchangeDeclare(RabbitMqConfiguration.Exchange, ExchangeType.Fanout);
+            try
+            {
+                Channel = Connection.CreateModel();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed {nameof(Connection.CreateModel)}.", exception);
+            }
 
-            QueueDeclareOk result = Channel.QueueDeclare(string.Empty, exclusive: true);
+            try
+            {
+                Channel
+                    .ExchangeDeclare(
+                        exchange: RabbitMqConfiguration.Exchange,
+                        type: ExchangeType.Topic,
+                        durable: true,
+                        autoDelete: false,
+                        arguments: new Dictionary<string, object>()
+                        {
+                        }
+                    );
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed {nameof(Channel.ExchangeDeclare)}.", exception);
+            }
 
-            Channel.QueueBind(result.QueueName, RabbitMqConfiguration.Exchange, string.Empty);
+            try
+            {
+                QueueDeclareOk queueDeclareOk = Channel.QueueDeclare(string.Empty, exclusive: true);
+                Channel.QueueBind(queueDeclareOk.QueueName, RabbitMqConfiguration.Exchange, string.Empty);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed {nameof(Channel.QueueDeclare)} or {nameof(Channel.QueueBind)}.", exception);
+            }
         }
 
         protected abstract void HandleMessage(TModel model);
 
         protected sealed override Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            cancellationToken.ThrowIfCancellationRequested();
+            try
+            {
+                cancellationToken.ThrowIfCancellationRequested();
 
-            EventingBasicConsumer consumer = new(Channel);
+                EventingBasicConsumer consumer = new(Channel);
 
-            consumer.Received += HandleMessage;
+                consumer.Received += HandleMessage;
 
-            Channel.BasicConsume(string.Empty, false, consumer);
+                Channel.BasicConsume(string.Empty, false, consumer);
 
-            return Task.CompletedTask;
+                return Task.CompletedTask;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed {nameof(Channel.BasicConsume)} .", exception);
+            }
         }
 
         private void HandleMessage(object sender, BasicDeliverEventArgs args)
         {
             if (ShouldHandleMessage(args))
             {
-                TModel model = args.GetModel<TModel>();
+                try
+                {
+                    TModel model = args.GetModel<TModel>();
 
-                HandleMessage(model);
+                    HandleMessage(model);
 
-                Channel.BasicAck(args.DeliveryTag, false);
+                    Channel.BasicAck(args.DeliveryTag, false);
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception($"failed {nameof(Channel.BasicAck)}.", exception);
+                }
             }
         }
 
         private bool ShouldHandleMessage(BasicDeliverEventArgs args)
         {
-            return args.GetSubject()?.Equals(subject, StringComparison.OrdinalIgnoreCase)
-                ?? false;
+            try
+            {
+                return args.GetSubject()?.Equals(subject, StringComparison.OrdinalIgnoreCase) ?? false;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"failed GetSubject.", exception);
+            }
         }
     }
 }
