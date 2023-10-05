@@ -22,7 +22,7 @@ namespace SampleService01
                 CreateOrderMessagePublisher createOrderMessagePublisher
                     = new CreateOrderMessagePublisher(rabbitMqConfiguration);
 
-                Task.Delay(TimeSpan.FromSeconds(3)).Wait();
+                Task.Delay(TimeSpan.FromSeconds(10)).Wait();
 
                 CreateOrderMessageListener createOrderMessageListener
                     = new CreateOrderMessageListener(

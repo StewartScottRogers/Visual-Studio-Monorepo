@@ -17,6 +17,13 @@ public class DeletedOrderMessageListener : AbstractMessageListener<Buyer>
 
     protected override void HandleMessage(Buyer model)
     {
-        Action(model);
+        try
+        {
+            Action(model);
+        }
+        catch (Exception exception)
+        {
+            throw new Exception($"failed {nameof(Action)}.", exception);
+        }
     }
 }
